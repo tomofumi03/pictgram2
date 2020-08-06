@@ -3,7 +3,6 @@ class TopicsController < ApplicationController
   def index
     #binding.pry
     @topics = Topic.all.includes(:favorite_users)
-    
 
   end
 
@@ -25,6 +24,7 @@ class TopicsController < ApplicationController
   end
 
   private
+  #binding.pry
   def topic_params
     params.require(:topic).permit(:image,:description)
   end

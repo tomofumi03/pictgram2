@@ -4,9 +4,9 @@ class CommentsController < ApplicationController
 
   def create
     #binding.pry
-    topic = Topic.find(params[:topic_id])
-    @comment = topic.comments.build(comment_params)
+    @comment =Comment.new(comment_params)
     @comment.user_id = current_user.id
+    @comment.topic_id = params[:topic_id]
     if @comment.save
       redirect_to topics_path, success: 'コメントしました'
     else

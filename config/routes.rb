@@ -20,5 +20,6 @@ Rails.application.routes.draw do
 
 
   post '/comments', to: 'comments#create'
+  get 'comments/index'
 
 end

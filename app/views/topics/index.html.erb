@@ -20,25 +20,34 @@
                 <% end %>
               <% end %>
             <%= topic.favorite_users.count %>
-            <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+
+              <%= link_to comments_index_path do %>
+
+                <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+              <% end %>
             <p class="topic-text">
               <%= topic.description %>
             </p>
-
+            <p class="mt-5"> Comment </p>
+            <% Comment.where(topic_id: topic.id).each do |c| %>
+              <div class="comment-text">
+                <%= c.user_id %>
+                <%= c.content %>
+              </div>
+            <% end %>
           </div>
           <div class="comment-wrapper border-top md-10">
-            <p class="mt-5">コメント一覧</p>
-              <% #binding.pry %>
-              <% Comment.where(topic_id: topic.id).each do |c| %>
-              <% end %>
+
+
+
 
                 <% #binding.pry %>
                 <%= form_for @comment do |f| %>
-                <% f.hidden_field :user_id, value: params[:user_id] %>
-                <% f.hidden_field :topic_id, value: params[:topic_id] %>
-                  <div class="form-group">
-                    <%= f.text_area :content, class: "text-white" %>
 
+                  <div class="form-group">
+                    <%= f.text_area :content %>
+                    <%= f.hidden_field :user_id, value: current_user.id %>
+                    <%= f.hidden_field :topic_id, value:topic.id %>
                   </div>
                   <%= f.submit 'コメントする', class: 'btn btn-black btn-block' %>
                 <% end %>

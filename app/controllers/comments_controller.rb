@@ -1,12 +1,17 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  #binding.pry
+  def index
+    @topics = Topic.find_by(id: params[:topic_id])
+    @comments = Comment.where @topics
+    @comment = Comment.new
+  end
 
 
   def create
     #binding.pry
     comment =Comment.new(comment_params)
     comment.user_id = current_user.id
-    comment.topic_id = params[:topic_id]
+    comment.topic_id = params[:comment][:topic_id]
     if comment.save
       redirect_to topics_path, success: 'コメントしました'
     else

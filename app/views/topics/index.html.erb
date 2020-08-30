@@ -4,6 +4,10 @@
     <%= f.search_field :title_cont %>
     <%= f.submit %>
   <% end %>
+ <% #binding.pry %>
+ <%= link_to "新しい順",topics_path, order_param: "new" ,method: :get %>
+  <%= link_to "古い順",topics_path, order_param: "old" ,method: :get %>
+  <%= link_to "いいねの多い順",topics_path, order_param: "new" ,method: :get %>
 
   <div class="container">
      <% #binding.pry %>

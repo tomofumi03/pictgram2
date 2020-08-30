@@ -3,11 +3,17 @@ class TopicsController < ApplicationController
   def index
     #binding.pry
     @topics = Topic.all.includes(:favorite_users)
-    #@topics = Topic.all.order(id: "DESC").includes(:favorite_users)
-    #@topics = Topic.all.order(favorite_users: :desc).includes(:favorite_users)
+    if params[:order_param] == "new"
+      @topics = Topic.all.order(id: "DESC").includes(:favorite_users)
+    elsif params[:order_param] == "old"
+      @topics = Topic.all.includes(:favorite_users)
+    #else params[:order_param] == "favorite"
+      #@topics = Topic.all.order().includes(:favorite_users)
+    end
+    #binding.pry
     @comment = Comment.new
     @q = Topic.search(params[:q])
-    @topic = @q.result(distinct: true)
+    @topics = @q.result(distinct: true)
   end
 
 

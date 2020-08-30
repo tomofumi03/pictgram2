@@ -2,9 +2,14 @@ class TopicsController < ApplicationController
 
   def index
     #binding.pry
-    @topics = Topic.all.includes(:favorite_users)
+    @topics = Topic.all.order(created_at: :desc).includes(:favorite_users)
+    @topics = Topic.all.order(id: "DESC").includes(:favorite_users)
+    @topics = Topic.all.order(favorite_users: :desc).includes(:favorite_users)
     @comment = Comment.new
+    @q = Topic.search(params[:q])
+    @topic = @q.result(distinct: true)
   end
+
 
   def new
     #binding.pry
@@ -26,6 +31,6 @@ class TopicsController < ApplicationController
   private
   #binding.pry
   def topic_params
-    params.require(:topic).permit(:image,:description)
+    params.require(:topic).permit(:image,:description,:title)
   end
 end

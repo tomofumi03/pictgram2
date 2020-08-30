@@ -1,4 +1,10 @@
 <div class="topic-index-wrapper">
+
+  <%= search_form_for @q do |f| %>
+    <%= f.search_field :title_cont %>
+    <%= f.submit %>
+  <% end %>
+
   <div class="container">
      <% #binding.pry %>
     <% @topics.each do |topic| %>
@@ -7,6 +13,7 @@
           <div class="topic-index-single">
             <h2 class="topic-author">
               <%= topic.user.name %>
+              <%= topic.title %>
             </h2>
             <%= image_tag topic.image.url %>
               <% #binding.pry %>
@@ -21,7 +28,7 @@
               <% end %>
             <%= topic.favorite_users.count %>
 
-              <%= link_to comments_index_path do %>
+              <%= link_to comments_index_path(topic_id: topic.id) do %>
 
                 <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
               <% end %>

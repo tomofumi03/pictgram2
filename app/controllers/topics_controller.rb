@@ -7,8 +7,12 @@ class TopicsController < ApplicationController
       @topics = Topic.all.order(id: "DESC").includes(:favorite_users)
     elsif params[:order_param] == "old"
       @topics = Topic.all.includes(:favorite_users)
-    #else params[:order_param] == "favorite"
-      #@topics = Topic.all.order().includes(:favorite_users)
+    else params[:order_param] == "favorite"
+      @topics = Topic.joins(:favorites).group("favorites.topic_id").order("count_all DESC").count
+
+
+
+
     end
     #binding.pry
     @comment = Comment.new

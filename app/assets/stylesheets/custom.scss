@@ -115,6 +115,21 @@ h1, h2 {
 .topic-index-wrapper {
   padding-top: 70px;
   background-color: #fafafa;
+  .topic-index-search{
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    
+
+  }
+  .topic-index-choice {
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 20px;
+  }
   .topic-index-single {
     background-color: #fff;
     padding-top: 20px;

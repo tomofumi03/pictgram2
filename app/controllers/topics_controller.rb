@@ -1,23 +1,28 @@
 class TopicsController < ApplicationController
-
   def index
-    #binding.pry
-    @topics = Topic.all.includes(:favorite_users)
-    if params[:order_param] == "new"
-      @topics = Topic.all.order(id: "DESC").includes(:favorite_users)
-    elsif params[:order_param] == "old"
-      @topics = Topic.all.includes(:favorite_users)
-    else params[:order_param] == "favorite"
-      @topics = Topic.joins(:favorites).group("favorites.topic_id").order("count_all DESC").count
-
-
-
-
-    end
     #binding.pry
     @comment = Comment.new
     @q = Topic.search(params[:q])
     @topics = @q.result(distinct: true)
+
+
+    @topics = @topics.all.includes(:favorite_users)
+    if params[:order_param] == "new"
+      @topics = @topics.all.order(id: "DESC").includes(:favorite_users)
+    elsif params[:order_param] == "old"
+      @topics = @topics.all.includes(:favorite_users)
+
+    else params[:order_param] == "favorite"
+      #binding.pry
+
+
+      @topics = @topics.select('topics.*', 'count(favorites.id) AS favs').left_joins(:favorites).group('topics.id').order('favs desc')
+
+
+
+    end
+
+
   end
 
 

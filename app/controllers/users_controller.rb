@@ -14,6 +14,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    #binding.pry
+    @user = User.find(params[:id])
+  end
+
+  def update
+    #binding.pry
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      redirect_to topics_path, success: '変更が完了しました'
+    else
+      flash.now[:danger] = "変更に失敗しました"
+      render :new
+    end
+  end
+
+  def destroy
+    #binding.pry
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to new_user_path
+  end
+
   private
   #binding.pry
   def user_params

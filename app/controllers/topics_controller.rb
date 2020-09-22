@@ -2,6 +2,7 @@ class TopicsController < ApplicationController
   def index
     #binding.pry
     @comment = Comment.new
+    
     @q = Topic.search(params[:q])
     @topics = @q.result(distinct: true)
 

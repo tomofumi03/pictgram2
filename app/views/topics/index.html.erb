@@ -45,13 +45,14 @@
             </p>
             <p class="mt-5"> Comment </p>
             <% #binding.pry %>
-            <% Comment.where(topic_id: topic.id).each do |c| %>
+            <% Comment.where(topic_id: topic.id).page(params[:page]).per(5).each do |c| %>
               <div class="comment-text">
                 <% #binding.pry %>
-                <%= c.user.id %>
-                <%= c.content %>
+                <p><%= c.user.name %></p>
+                <p><%= c.content %></p>
               </div>
             <% end %>
+            <%= paginate Comment.where(topic_id: topic.id).page(params[:page])%>
           </div>
           <div class="comment-wrapper border-top md-10">
 

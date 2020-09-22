@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   get 'users/new'
+  put 'users/edit'
+  delete 'users/destroy'
 
   root 'pages#index'
   get 'pages/help'
@@ -21,7 +23,5 @@ Rails.application.routes.draw do
 
   post '/comments', to: 'comments#create'
   get 'comments/index'
-
-
 
 end

@@ -46,12 +46,14 @@
               <% end %>
             </li>
             <li>
-              <%= link_to logout_path, method: :delete do %>
+              <%= link_to logout_path, method: :delete ,data: {confirm: "本当にログアウトしますか?",
+                       cancel: "キャンセル",
+                       commit: "ログアウト"} do %>
                 <%= image_tag "icons/logout.png" %>
               <% end %>
             </li>
             <li>
-              <%= link_to users_destroy_path method: :delete do %>
+              <%= link_to user_path(current_user), method: :delete ,data: {confirm: "本当にを削除しますか?",cancel: "キャンセル",commit: "削除"} do %>
                 <i class="fas fa-user-slash fa-3x" ></i>
               <% end %>
             </li>

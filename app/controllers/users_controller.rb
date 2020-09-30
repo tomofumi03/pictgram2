@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     #binding.pry
     @user =User.new(user_params)
     if @user.save
-      redirect_to topics_path, success: '登録が完了しました'
+      redirect_to root_path, success: '登録が完了しました'
     else
       flash.now[:danger] = "登録に失敗しました"
       render :new
@@ -32,9 +32,9 @@ class UsersController < ApplicationController
 
   def destroy
     #binding.pry
-    user = User.find(params[:id])
-    user.destroy
-    redirect_to new_user_path
+    User.find(params[:id]).destroy
+    #binding.pry
+    redirect_to root_path, success: '削除が完了しました'
   end
 
   private

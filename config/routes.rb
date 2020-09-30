@@ -2,9 +2,8 @@ Rails.application.routes.draw do
   get 'topics/new'
   get 'sessions/new'
 
-  get 'users/new'
-  put 'users/edit'
-  delete 'users/destroy'
+
+
 
   root 'pages#index'
   get 'pages/help'

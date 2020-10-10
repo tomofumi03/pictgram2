@@ -4,7 +4,7 @@ class User < ApplicationRecord
    #validates :password,presence: true, length: {minimum: 8, maximum: 32}
    #validates :password,format: { with: /\A[a-zA-Z0-9]+\z/}
    #validates :email,format: { with: /A\S+@\S+\.\S+z/}
-
+   mount_uploader :image, ImageUploader
 
    has_secure_password
    has_many :topics, dependent: :destroy

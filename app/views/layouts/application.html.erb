@@ -19,6 +19,14 @@
 
     <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
       <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
         <% if logged_in? %>
           <%= link_to topics_path do %>
           <span><%= image_tag "icons/logo.png", class: "navbar-brand" %></span>
@@ -28,7 +36,8 @@
           <span><%= image_tag "icons/logo.png", class: "navbar-brand" %></span>
           <% end %>
         <% end %>
-        <ul class="nav navbar-nav navbar-right">
+        </div>
+        <ul id="navbar" class="nav navbar-nav navbar-right navbar-collapse collapse">
           <% if logged_in? %>
             <li>
               <%= link_to edit_user_path(current_user) do %>
@@ -53,7 +62,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to user_path(current_user), method: :delete ,data: {confirm: "本当にを削除しますか?",cancel: "キャンセル",commit: "削除"} do %>
+              <%= link_to user_path(current_user), method: :delete ,data: {confirm: "本当に削除しますか?",cancel: "キャンセル",commit: "削除"} do %>
                 <i class="fas fa-user-slash fa-3x" ></i>
               <% end %>
             </li>
@@ -77,7 +86,7 @@
     <%= yield %>
     <script>
       $(function(){
-        $(".alert").fadeOut(8000);
+        $(".alert").fadeOut(3000);
       });
     </script>
 

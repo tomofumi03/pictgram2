@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   def index
 #binding.pry
-    @comments = Comment.where(topic_id: params[:topic_id]).page(params[:page]).per(5)
+    @comments = Comment.where(topic_id: params[:topic_id]).page(params[:page]).per(2)
     @comment = Comment.new
   end
 

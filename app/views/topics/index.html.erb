@@ -60,7 +60,7 @@
                 </div>
               <% end %>
               <% #binding.pry %>
-              <%= paginate Comment.where(topic_id: topic.id).page(params[:page]) %>
+              <%= paginate Comment.where(topic_id: topic.id).page(params[:page]).per(2) %>
 
               </div>
               <div class="comment-wrapper border-top md-10">
